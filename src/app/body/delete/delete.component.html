@@ -1,0 +1,18 @@
+<div class="center-data" style="width: 480px;">
+    <div style="margin-bottom: 15px;"></div>
+      <div class="card rounded card shadow card-gradient textData" style="margin-bottom: 15px;">
+          <div class="card-body">
+            
+            <h4 class="card-title textData">Вы действительно хотите удалить {{vendor.slice(0, vendor.length-1).toUpperCase()}}?</h4>   
+            <div style="margin-top: 15px">
+              <img src="assets/images/{{vendor}}.png" alt="{{vendor}}" class="marginauto">
+            </div>
+            
+            <h5 class="card-title textData">Мощность: {{engine?.power}}кВт</h5>
+            <div class="textData">Стоимость: ${{engine?.cost}}</div>
+            <button (click)="deleteEngine()" class="btn btn-{{style}} shadow" style="margin: 10px;">Удалить</button>
+            <button (click)="redirectToAllEngines()" class="btn btn-outline-light shadow" style="margin: 10px;">Отмена</button>
+          </div>
+        </div>
+  </div>
+  

@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div style="width: 600px; margin: 0 auto;">
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+            <div class="card-body" style="margin: 0 auto;">
+                <div>
+                    <h5 class="card-header bg-{{style}} rounded" style="margin-bottom: 30px;">Добавление мотор-редуктора</h5>
+
+                    <div style="margin-bottom: 20px;">
+                        <label>Производитель</label>
+
+                        <div style="margin-top: 15px">
+                            <select formControlName="vendor" class="form-select" (change)="onChangeEngine($event)">
+                              <option value="sews">SEW</option>
+                              <option value="motovarios">Motovario</option>
+                            </select>
+                          </div>
+                      </div>
+
+                      <div style="margin-bottom: 20px;">
+                        <label>Мощность, кВт</label>
+
+                        <div style="margin-top: 15px">
+                            <select formControlName="power" class="form-select">
+                              <option *ngFor="let power of powers" value="{{power}}">{{power}} кВт</option>
+                            </select>
+                          </div>
+                      </div>
+
+                      <div style="margin-bottom: 20px;">
+                        <label>Цена, $</label>
+                        <input type="number" placeholder="Введите цену в $" formControlName="cost" class="form-control">
+                        <div appMyDirective *ngIf="this.form.controls['cost'].invalid && this.form.controls['cost'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['cost'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['cost'].errors?.['min']">Цена не может быть меньше $10 </small></div>
+                        </div>
+                      </div>
+
+                </div>
+                <button class="btn btn-{{style}}" style="margin-right: 70px;" [disabled]="form.invalid" type="submit">Сохранить изменения</button>
+                <button type="button" (click)="redirectToAllEngines()" class="btn btn-outline-light" style="margin: 10px; width: 150px;">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+</form>

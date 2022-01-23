@@ -1,0 +1,18 @@
+.textData{
+    margin: 10px 10px 10px 5px;
+    color: white;
+}
+
+.marginauto {
+    margin: 10px auto 20px;
+    display: block;
+    width: 50%;
+}
+
+.greenButton {
+    color:#3dd18c;
+}
+
+.greenButton:hover {
+    color:#ffffff;
+}

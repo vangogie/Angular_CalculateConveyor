@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Engine } from 'src/app/models/engine';
-import { ContextService } from 'src/app/services/context.service';
+import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
   selector: 'app-add-engine',
@@ -14,7 +14,7 @@ export class AddEngineComponent implements OnInit {
   public style: string = 'danger';
   public powers: number[] = [];
 
-  constructor(public context:ContextService, private router: Router) {
+  constructor(public context:EngineContextService, private router: Router) {
     this.powers = context.getPower();
    }
 

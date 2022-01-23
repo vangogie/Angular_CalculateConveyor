@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Engine } from 'src/app/models/engine';
-import { ContextService } from 'src/app/services/context.service';
+import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
   selector: 'app-all-engines',
@@ -19,7 +19,7 @@ export class AllEnginesComponent implements OnInit {
   private sews: Engine[] = [];
   private motovarios: Engine[] = [];
 
-  constructor(public context:ContextService, private router: Router) {
+  constructor(public context:EngineContextService, private router: Router) {
     this.powers = context.getPower();
     this.selectedPower = 0;
    }

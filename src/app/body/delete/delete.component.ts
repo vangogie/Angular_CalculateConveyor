@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Engine } from 'src/app/models/engine';
-import { ContextService } from 'src/app/services/context.service';
+import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
   selector: 'app-delete',
@@ -14,7 +14,7 @@ export class DeleteComponent implements OnInit {
   public vendor: string='';
   public style: string = 'danger';
 
-  constructor(public context:ContextService, public route:ActivatedRoute, private router: Router) { }
+  constructor(public context:EngineContextService, public route:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params)=>
@@ -37,7 +37,7 @@ export class DeleteComponent implements OnInit {
   deleteEngine(){
     if(this.engine)
     if(this.engine.id)
-    this.context.deleteEngine(this.engine.id, this.vendor).subscribe(()=>{this.router.navigate([`delete_success`]);});
+    this.context.deleteEngine(this.engine.id, this.vendor).subscribe(()=>{this.router.navigate([`delete_success/allengines`]);});
   }
 
   redirectToAllEngines()

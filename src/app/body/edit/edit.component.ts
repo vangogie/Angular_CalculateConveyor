@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Engine } from 'src/app/models/engine';
-import { ContextService } from 'src/app/services/context.service';
+import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
   selector: 'app-edit',
@@ -17,7 +17,10 @@ export class EditComponent implements OnInit {
   public powers: number[] = [];
   
 
-  constructor(public context:ContextService, public route:ActivatedRoute, private router: Router) { 
+  constructor(
+    public context:EngineContextService, 
+    public route:ActivatedRoute, 
+    private router: Router) { 
     
   }
 

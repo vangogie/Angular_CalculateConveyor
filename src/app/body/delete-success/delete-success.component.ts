@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-success',
@@ -8,13 +8,20 @@ import { Router } from '@angular/router';
 })
 export class DeleteSuccessComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  private nextroute = '';
+
+
+  constructor(public route:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params)=>
+    {
+      this.nextroute = params["nextroute"];
+    });
   }
 
   redirectToAllEngines()
   {
-    this.router.navigate([`allengines`]);
+    this.router.navigate([this.nextroute]);
   }
 }

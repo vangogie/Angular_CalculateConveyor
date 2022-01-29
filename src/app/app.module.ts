@@ -17,6 +17,10 @@ import { AllBeltsComponent } from './body/all-belts/all-belts.component';
 import { AddBeltComponent } from './body/add-belt/add-belt.component';
 import { DeleteBeltComponent } from './body/delete-belt/delete-belt.component';
 import { EditBeltComponent } from './body/edit-belt/edit-belt.component';
+import { AllBeltTypesComponent } from './body/all-belt-types/all-belt-types.component';
+import { AddBeltTypeComponent } from './body/add-belt-type/add-belt-type.component';
+import { EditBeltTypeComponent } from './body/edit-belt-type/edit-belt-type.component';
+import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-type.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { EditBeltComponent } from './body/edit-belt/edit-belt.component';
     AllBeltsComponent,
     AddBeltComponent,
     DeleteBeltComponent,
-    EditBeltComponent
+    EditBeltComponent,
+    AllBeltTypesComponent,
+    AddBeltTypeComponent,
+    EditBeltTypeComponent,
+    DeleteBeltTypeComponent
   ],
   imports: [
     BrowserModule,

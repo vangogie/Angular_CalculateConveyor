@@ -2,8 +2,8 @@
 
     <div class="card rounded shadow card-gradient" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="card-body">
+          <h5 class="card-header bg-success rounded textData" style="margin-bottom: 30px; text-align: center;">Ленты</h5>
           <div class="textData"><button (click)="addNewBelt()" class="btn btn-outline-success shadow greenButton" style="margin: 10px;">Добавить новую ленту</button></div>
-
           <div style="margin-top: 15px">
             <select class="form-select" (change)='onBeltSelected($event)'>
               <option selected value=0>Все ленты</option>
@@ -14,16 +14,13 @@
             <div style="margin-top: 15px">
               <img src="assets/images/belt.png" alt="belt" class="marginauto">
             </div>
-            
         </div> 
-        
-          
     </div>   
     
     <div *ngFor="let belt of beltsShow">
       <div class="card rounded card shadow card-gradient" style="margin-bottom: 15px;">
           <div class="card-body">
-            <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+            
               <div class="textData">
                 <h6 class="card-title">Название:</h6>
                 <h5 class="card-title">{{belt.name}}</h5>
@@ -32,6 +29,7 @@
                 <h6 class="card-title">Стоимость:</h6>
                 <h5 class="card-title">${{belt.cost}}</h5>
               </div>
+              <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
               <div class="textData"><button (click)="editBelt(belt.id)" class="btn btn-outline-success shadow greenButton" style="margin: 10px;">Изменить</button></div>
               <div class="textData"><button (click)="deleteBelt(belt.id, belt.name)" class="btn btn-success shadow" style="margin: 10px;">Удалить</button></div> 
             </div>

@@ -27,7 +27,7 @@ export class AddBeltComponent implements OnInit {
       this.form = new FormGroup({
         belttype: new FormControl(beltTypes[0].id),
         cost: new FormControl('', [Validators.min(10), Validators.required]),
-        name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
+        name: new FormControl('', [Validators.minLength(3), Validators.maxLength(50)]),
       });
 
     });

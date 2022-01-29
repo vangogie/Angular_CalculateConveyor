@@ -42,7 +42,7 @@ export class EditBeltComponent implements OnInit {
         this.belt = onebelt;
         this.form = new FormGroup({
           belttype: new FormControl(this.belt.beltType.id),
-          name: new FormControl(this.belt.name, [Validators.minLength(3), Validators.maxLength(255)]),
+          name: new FormControl(this.belt.name, [Validators.minLength(3), Validators.maxLength(50)]),
           cost: new FormControl(this.belt.cost, [Validators.min(10), Validators.required])
         });
 

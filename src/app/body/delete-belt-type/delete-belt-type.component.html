@@ -1,0 +1,18 @@
+<div class="center-data minheight" style="width: 480px;">
+    <div style="margin-bottom: 15px;"></div>
+      <div class="card rounded card shadow card-gradient textData" style="margin-bottom: 15px;">
+          <div class="card-body">
+            
+            <h4 class="card-title textData">Вы действительно хотите удалить тип ленты {{type}}?</h4>   
+            <div style="margin-top: 15px">
+              <img src="assets/images/belttype.png" alt="belt.png" class="marginauto">
+            </div>
+            
+            <button (click)="deleteBeltType()" class="btn btn-secondary shadow" style="margin: 10px;">Удалить</button>
+            <button (click)="redirectToAllBeltTypes()" class="btn btn-outline-light shadow" style="margin: 10px;">Отмена</button>
+            <div>
+                {{errorInfo}}
+            </div>
+          </div>
+        </div>
+  </div>

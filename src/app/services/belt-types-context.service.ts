@@ -20,7 +20,19 @@ export class BeltTypesContextService {
     return this.http.get<BeltType[]>(`${this.connectionString}/belttypes`);
   }
 
-  
+  getOne(id: number): Observable<BeltType>{
+    return this.http.get<BeltType>(`${this.connectionString}/belttypes/${id}`);
+  }
 
-  
+  add(beltType: any): Observable<Boolean>{
+    return this.http.post<Boolean>(`${this.connectionString}/belttypes`, beltType);
+  }
+
+  update(beltType: BeltType): Observable<Boolean>{
+    return this.http.patch<Boolean>(`${this.connectionString}/belttypes`, beltType);
+  }
+
+  delete(id: number): Observable<Boolean>{
+    return this.http.get<Boolean>(`${this.connectionString}/belttypes/delete/${id}`);
+  }
 }

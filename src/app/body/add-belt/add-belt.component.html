@@ -3,7 +3,7 @@
         <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
             <div class="card-body" style="margin: 0 auto;">
                 <div>
-                    <h5 class="card-header bg-success rounded" style="margin-bottom: 30px;">Добавление ленты</h5>
+                    <h5 class="card-header bg-success rounded" style="margin-bottom: 30px; text-align: center;">Добавление ленты</h5>
 
                     <div style="margin-bottom: 20px;">
                         <label>Тип ленты</label>
@@ -20,7 +20,7 @@
                         <div style="margin-top: 15px">
                             <input type="text" placeholder="Наименование ленты" formControlName="name" class="form-control">
                                 <div appMyDirective *ngIf="this.form.controls['name'].invalid && this.form.controls['name'].touched" class="validation">
-                                    <div><small *ngIf="this.form.controls['name'].errors?.['maxlength']">Наименование не может превышать 255 символов</small></div>
+                                    <div><small *ngIf="this.form.controls['name'].errors?.['maxlength']">Наименование не может превышать 50 символов</small></div>
                                     <div><small *ngIf="this.form.controls['name'].errors?.['minlength']">Наименование не может быть менее 3 символов</small></div>
                             </div>
                           </div>

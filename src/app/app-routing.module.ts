@@ -8,12 +8,14 @@ import { AddEngineComponent } from './body/add-engine/add-engine.component';
 import { AllBeltTypesComponent } from './body/all-belt-types/all-belt-types.component';
 import { AllBeltsComponent } from './body/all-belts/all-belts.component';
 import { AllEnginesComponent } from './body/all-engines/all-engines.component';
+import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-costing.component';
 import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-type.component';
 import { DeleteBeltComponent } from './body/delete-belt/delete-belt.component';
 import { DeleteSuccessComponent } from './body/delete-success/delete-success.component';
 import { DeleteComponent } from './body/delete/delete.component';
 import { EditBeltTypeComponent } from './body/edit-belt-type/edit-belt-type.component';
 import { EditBeltComponent } from './body/edit-belt/edit-belt.component';
+import { EditMetallCostingComponent } from './body/edit-metall-costing/edit-metall-costing.component';
 import { EditComponent } from './body/edit/edit.component';
 import { ErrorComponent } from './body/error/error.component';
 import { MainComponent } from './body/main/main.component';
@@ -35,6 +37,9 @@ const routes: Routes = [
   {path: 'addbelttype', component:AddBeltTypeComponent},
   {path: 'editbelttype/:id', component:EditBeltTypeComponent},
   {path: 'deletebelttype/:id/:type', component:DeleteBeltTypeComponent},
+
+  {path: 'allmetallcosting', component:AllMetallCostingComponent},
+  {path: 'editmetallcosting/:id', component:EditMetallCostingComponent},
 
   {path: 'about', component:AboutComponent},
   {path: 'author', component:AboutAuthorComponent},

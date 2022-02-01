@@ -2,8 +2,8 @@
 
     <div class="card rounded shadow card-gradient" style="margin-top: 15px; margin-bottom: 15px;">
         <div class="card-body">
-            <h5 class="card-header bg-secondary rounded textData" style="margin-bottom: 30px; text-align: center;">Типы лент</h5>
-          <div class="textData"><button (click)="addNewBeltType()" class="btn btn-outline-secondary shadow greenButton" style="margin: 10px;">Добавить новый тип ленты</button></div>
+            <h5 class="card-header bg-info rounded textData" style="margin-bottom: 30px; text-align: center;">Типы лент</h5>
+          <div class="textData"><button (click)="addNewBeltType()" class="btn btn-outline-info shadow greenButton" style="margin: 10px;">Добавить новый тип ленты</button></div>
   
             <div style="margin-top: 15px">
               <img src="assets/images/belttype.png" alt="belt" class="marginauto">
@@ -20,8 +20,8 @@
               <div class="textData">
                 <h5 class="card-title fixedTextWidth">{{beltType.type}}</h5>
               </div>
-              <div class="textData"><button (click)="editBeltType(beltType.id)" class="btn btn-outline-secondary shadow greenButton" style="margin: 10px;">Изменить</button></div>
-              <div class="textData"><button (click)="deleteBeltType(beltType.id, beltType.type)" class="btn btn-secondary shadow" style="margin: 10px;">Удалить</button></div> 
+              <div class="textData"><button (click)="editBeltType(beltType.id)" class="btn btn-outline-info shadow greenButton" style="margin: 10px;">Изменить</button></div>
+              <div class="textData"><button (click)="deleteBeltType(beltType.id, beltType.type)" class="btn btn-info shadow" style="margin: 10px;">Удалить</button></div> 
             </div>
           </div>
 

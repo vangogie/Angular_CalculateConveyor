@@ -10,17 +10,26 @@
 
                         <div style="margin-top: 15px">
                             <select formControlName="power" class="form-select">
-                              <option *ngFor="let power of powers" value="{{power}}">{{power}} кВт</option>
+                              <option *ngFor="let power of powers" value="{{power}}">{{power}}</option>
                             </select>
                           </div>
                       </div>
 
-                      <div style="margin-bottom: 20px;">
-                        <label>Цена, $</label>
-                        <input type="number" placeholder="Введите цену в $" formControlName="cost" class="form-control">
-                        <div appMyDirective *ngIf="this.form.controls['cost'].invalid && this.form.controls['cost'].touched" class="validation">
-                            <div><small *ngIf="this.form.controls['cost'].errors?.['required']">Поле не может быть пустым</small></div>
-                            <div><small *ngIf="this.form.controls['cost'].errors?.['min']">Цена не может быть меньше $10 </small></div>
+                      <div class="row">
+                        <div class="col-sm-6" style="margin-bottom: 20px;">
+                          <label>Цена</label>
+                          <input type="number" placeholder="Введите цену" formControlName="cost" class="form-control">
+                          <div appMyDirective *ngIf="this.form.controls['cost'].invalid && this.form.controls['cost'].touched" class="validation">
+                              <div><small *ngIf="this.form.controls['cost'].errors?.['required']">Поле не может быть пустым</small></div>
+                              <div><small *ngIf="this.form.controls['cost'].errors?.['min']">Цена не может быть меньше 10 </small></div>
+                          </div>
+                        </div>
+  
+                        <div class="col-sm-6" style="margin-bottom: 20px">
+                          <label>Валюта</label>
+                          <select formControlName="course" class="form-select">
+                            <option *ngFor="let course of courses" value="{{course.sale}}" selected="getIsSelected(course.ccy)">{{course.ccy}}</option>
+                          </select>
                         </div>
                       </div>
 

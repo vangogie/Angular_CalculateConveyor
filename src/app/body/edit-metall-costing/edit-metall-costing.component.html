@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="minheight">
+    <div style="width: 600px; margin: 0 auto;">
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+            <div class="card-body" style="margin: 0 auto;">
+                <div>
+                    <h5 class="card-header bg-secondary rounded" style="margin-bottom: 30px; text-align: center;">Изменение стоимости металла</h5>
+
+                      <div style="margin-bottom: 20px;">
+                        <label>{{metallCosting?.name}}</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6" style="margin-bottom: 20px;">
+                          <label>Цена за кг</label>
+                          <input type="number" placeholder="Введите цену" formControlName="cost" class="form-control">
+                          <div appMyDirective *ngIf="this.form.controls['cost'].invalid && this.form.controls['cost'].touched" class="validation">
+                              <div><small *ngIf="this.form.controls['cost'].errors?.['required']">Поле не может быть пустым</small></div>
+                              <div><small *ngIf="this.form.controls['cost'].errors?.['min']">Цена не может быть меньше 0.1 </small></div>
+                          </div>
+                        </div>
+  
+                        <div class="col-sm-6" style="margin-bottom: 20px">
+                          <label>Валюта</label>
+                          <select formControlName="course" class="form-select">
+                            <option *ngFor="let course of courses" value="{{course.sale}}" selected="getIsSelected(course.ccy)">{{course.ccy}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                <button class="btn btn-secondary" style="margin-right: 70px;" [disabled]="form.invalid" type="submit">Сохранить изменения</button>
+                <button type="button" (click)="redirectToAllMetallCosting()" class="btn btn-outline-light" style="margin: 10px; width: 150px;">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+</form>

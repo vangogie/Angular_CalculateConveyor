@@ -21,6 +21,8 @@ import { AllBeltTypesComponent } from './body/all-belt-types/all-belt-types.comp
 import { AddBeltTypeComponent } from './body/add-belt-type/add-belt-type.component';
 import { EditBeltTypeComponent } from './body/edit-belt-type/edit-belt-type.component';
 import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-type.component';
+import { EditMetallCostingComponent } from './body/edit-metall-costing/edit-metall-costing.component';
+import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-costing.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-typ
     AllBeltTypesComponent,
     AddBeltTypeComponent,
     EditBeltTypeComponent,
-    DeleteBeltTypeComponent
+    DeleteBeltTypeComponent,
+    EditMetallCostingComponent,
+    AllMetallCostingComponent
   ],
   imports: [
     BrowserModule,

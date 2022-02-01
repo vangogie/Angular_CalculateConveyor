@@ -1,0 +1,25 @@
+<div class="center-data minheight" style="width: 480px;">
+
+    <div class="card rounded shadow card-gradient" style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="card-body">
+          <h5 class="card-header bg-secondary rounded textData" style="margin-bottom: 30px; text-align: center;">Металл</h5>
+  
+            <div style="margin-top: 15px">
+              <img src="assets/images/metallcosting.png" alt="belt" class="marginauto">
+            </div>
+        </div> 
+    </div>   
+    
+    <div *ngFor="let metallCosting of metallCostings">
+      <div class="card rounded card shadow card-gradient" style="margin-bottom: 15px;">
+          <div class="card-body">
+            
+              <div class="textData">
+                <h5 class="card-title">{{metallCosting.name}} (${{metallCosting.cost}})</h5>
+              </div>
+              
+              <div class="textData"><button (click)="editMetallCosting(metallCosting.id)" class="btn btn-outline-secondary shadow myButton" style="margin: 10px;">Изменить стоимость</button></div>
+            </div>
+    </div>
+  </div>
+</div>

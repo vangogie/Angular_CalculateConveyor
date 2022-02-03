@@ -1,0 +1,160 @@
+<ng-template #load>
+    <div class="minheight">
+        <div style="padding-left: 48vw; padding-top: 50vh;">
+            <div>
+                <div class="spinner-grow text-primary" role="status"></div>
+                <div class="spinner-grow text-success" role="status"></div>
+                <div class="spinner-grow text-secondary" role="status"></div> 
+            </div>
+            
+        </div> 
+    </div>
+</ng-template>
+
+<div *ngIf="metallCostings.length>0 && beltTypes.length>0; else load">
+<form [formGroup]="form" (ngSubmit)="submit()" class="minheight" *ngIf="!conveyorCostAnswer">
+        <div>
+            
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+            <h5 class="card-header bg-success rounded" style="margin-bottom: 30px; text-align: center;">Расчет прямого конвейера</h5>
+            <img src="assets/images/straightconv.png" alt="conveyor" class="col-12 col-sm-12 col-md-8 col-lg-5 col-xl-5" style="margin: 0 auto;">
+            <div class="card-body row">
+                
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Длина конвейера, мм</label>
+                        <input type="number" placeholder="Введите длину конвейера в мм" formControlName="clength" class="form-control">
+                        <div *ngIf="this.form.controls['clength'].invalid && this.form.controls['clength'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['clength'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['clength'].errors?.['min']">Длина не может быть меньше 300 мм </small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Ширина конвейера, мм</label>
+                        <input type="number" placeholder="Введите ширину конвейера в мм" formControlName="width" class="form-control">
+                        <div *ngIf="this.form.controls['width'].invalid && this.form.controls['width'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['width'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['width'].errors?.['min']">Ширина не может быть меньше 50 мм </small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Скорость ленты</label>
+                        <input type="number" placeholder="Введите скорость ленты" formControlName="speed" class="form-control">
+                        <div *ngIf="this.form.controls['speed'].invalid && this.form.controls['speed'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['speed'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['speed'].errors?.['min']">Скорость не может быть меньше 0,01</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label> </label>
+                        <select formControlName="speedUnits" class="form-select">
+                            <option value=1>м/с</option>
+                            <option value=0.0167>м/мин</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Масса продукта на ленте, кг</label>
+                        <input type="number" placeholder="Введите массу продукта на ленте" formControlName="mass" class="form-control">
+                        <div *ngIf="this.form.controls['mass'].invalid && this.form.controls['mass'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['mass'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['mass'].errors?.['min']">Масса не может быть меньше 0,01</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Угол наклона конвейера, {{currentAngle}}°</label>
+                        <input type="range" min="0" max="30" step="1" value="0" formControlName="angle" class="form-control" [(ngModel)]="currentAngle">
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Производитель привода</label>
+                        <select formControlName="enginetype" class="form-select">
+                            <option value="Sew">Sew</option>
+                            <option value="Motovario">Motovario</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Тип ленты</label>
+                        <select formControlName="beltType" class="form-select">
+                            <option *ngFor="let b of beltTypes" value="{{b.type}}">{{b.type}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+                    <div style="margin-bottom: 20px;">
+                        <label>Материал конвейера</label>
+                        <select formControlName="conveyorMaterial" class="form-select">
+                            <option *ngFor="let m of metallCostings" value="{{m.name}}">{{m.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" formControlName="hasFrame">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Наличие рамы у конвейера</label>
+                      </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" [(hidden)]="!form.value.hasFrame">
+                    <div style="margin-bottom: 20px;">
+                        <label>Материал рамы</label>
+                        <select formControlName="frameMaterial" class="form-select">
+                            <option *ngFor="let m of metallCostings" value="{{m.name}}">{{m.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" [(hidden)]="!form.value.hasFrame">
+                    <div style="margin-bottom: 20px;">
+                        <label>Высота конвейера над полом, мм</label>
+                        <input type="number" placeholder="Введите высоту конвейера в мм" formControlName="frameHeight" class="form-control">
+                        <div *ngIf="this.form.controls['frameHeight'].invalid && this.form.controls['frameHeight'].touched" class="validation">
+                            <div><small *ngIf="this.form.controls['frameHeight'].errors?.['required']">Поле не может быть пустым</small></div>
+                            <div><small *ngIf="this.form.controls['frameHeight'].errors?.['min']">Длина не может быть меньше 100 мм </small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <button class="btn btn-success col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3" style="margin-right: 70px;" [disabled]="form.invalid" type="submit">Расчитать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="minheight" *ngIf="conveyorCostAnswer">
+    <div style="width: 600px; margin: 0 auto;">
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData">
+            <div class="card-body" style="margin: 0 auto;">
+                <div>
+                    <h5 class="card-header bg-success rounded" style="margin-bottom: 30px; text-align: center;">Общая стоимость: ${{conveyorCostAnswer.totalCost}}</h5>
+                    <pre>${{conveyorCostAnswer.info}}</pre>
+                    <button class="btn btn-success"(click)="toCalculate()">Вернуться к расчету</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

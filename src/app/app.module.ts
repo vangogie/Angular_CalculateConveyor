@@ -23,6 +23,8 @@ import { EditBeltTypeComponent } from './body/edit-belt-type/edit-belt-type.comp
 import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-type.component';
 import { EditMetallCostingComponent } from './body/edit-metall-costing/edit-metall-costing.component';
 import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-costing.component';
+import { CalculateStraightConveyorComponent } from './body/calculale-straight-conveyor/calculale-straight-conveyor.component';
+import { CalculaleComponent } from './body/calculale/calculale.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-
     EditBeltTypeComponent,
     DeleteBeltTypeComponent,
     EditMetallCostingComponent,
-    AllMetallCostingComponent
+    AllMetallCostingComponent,
+    CalculateStraightConveyorComponent,
+    CalculaleComponent
   ],
   imports: [
     BrowserModule,

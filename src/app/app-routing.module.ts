@@ -9,6 +9,8 @@ import { AllBeltTypesComponent } from './body/all-belt-types/all-belt-types.comp
 import { AllBeltsComponent } from './body/all-belts/all-belts.component';
 import { AllEnginesComponent } from './body/all-engines/all-engines.component';
 import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-costing.component';
+import { CalculateStraightConveyorComponent } from './body/calculale-straight-conveyor/calculale-straight-conveyor.component';
+import { CalculaleComponent } from './body/calculale/calculale.component';
 import { DeleteBeltTypeComponent } from './body/delete-belt-type/delete-belt-type.component';
 import { DeleteBeltComponent } from './body/delete-belt/delete-belt.component';
 import { DeleteSuccessComponent } from './body/delete-success/delete-success.component';
@@ -22,6 +24,9 @@ import { MainComponent } from './body/main/main.component';
 
 const routes: Routes = [
   {path: '', component:MainComponent},
+
+  {path: 'calculate', component:CalculaleComponent},
+  {path: 'calculatestraightconveyor', component:CalculateStraightConveyorComponent},
 
   {path: 'allengines', component:AllEnginesComponent},
   {path: 'addengine', component:AddEngineComponent},

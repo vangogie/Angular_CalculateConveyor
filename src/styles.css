@@ -10,7 +10,7 @@ body{
 }
 
 .card-gradient{
-    background: #fefcea; /* Для старых браузеров */
+    background: rgba(21, 48, 58, 0.8); /* Для старых браузеров */
     background: linear-gradient(to bottom right, rgba(21, 48, 58, 0.8), rgba(26, 22, 21, 1));
 }
 
@@ -20,4 +20,9 @@ body{
 
 small{
     color: red;
+}
+
+.textData{
+    margin: 10px 10px 10px 5px;
+    color: white;
 }

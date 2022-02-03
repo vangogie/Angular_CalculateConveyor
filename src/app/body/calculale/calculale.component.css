@@ -1,0 +1,20 @@
+.pointer{
+    cursor: pointer;
+}
+
+.header-bg{
+    background: rgba(21, 48, 58, 0.8); /* Для старых браузеров */
+    background: linear-gradient(to bottom right, rgba(48, 110, 133, 0.8), rgb(46, 44, 54));
+}
+
+.marginauto {
+    margin: 10px auto 20px;
+    display: block;
+    width: 80%;
+}
+
+
+.card-gradient:hover{
+    background: rgba(21, 48, 58, 0.8); /* Для старых браузеров */
+    background: linear-gradient(to bottom right, rgba(25, 62, 77, 0.8), rgb(25, 25, 31));
+}

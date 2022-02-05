@@ -1,27 +1,17 @@
-<!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(255, 255, 255, 0.8)">
-  <a class="navbar-brand" routerLinkActive="active" aria-current="page" routerLink="/" [routerLinkActiveOptions]="{exact: true}">
-    <img src="assets/images/logo.webp" width="70" height="70" class="d-inline-block align-top" alt="">
-    
-  </a>
-  <div class="" id="navbarSupportedContent">
-    <app-menu></app-menu>
-  </div>
-</nav>-->
-
-
     <input type="checkbox" id="nav-toggle" hidden>
     <nav class="nav">
         <label for="nav-toggle" class="nav-toggle" onclick></label>
         <h2 class="logo"> 
-            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Calculate conveyor <span class="sr-only"></span></a>
+            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/" [routerLinkActiveOptions]="{exact: true}">Calculate conveyor <span class="sr-only"></span></a>
         </h2>
         <ul>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/" [routerLinkActiveOptions]="{exact: true}">Главная <span class="sr-only"></span></a></li>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/calculate" [routerLinkActiveOptions]="{exact: true}">Калькулятор конвейеров<span class="sr-only"></span></a></li>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/allengines" [routerLinkActiveOptions]="{exact: true}">Мотор-редукторы<span class="sr-only"></span></a></li>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/allbelts" [routerLinkActiveOptions]="{exact: true}">Ленты<span class="sr-only"></span></a></li>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/allbelttypes" [routerLinkActiveOptions]="{exact: true}">Типы лент<span class="sr-only"></span></a></li>
-            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/allmetallcosting" [routerLinkActiveOptions]="{exact: true}">Металл<span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/" [routerLinkActiveOptions]="{exact: true}">Главная <span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/calculate" [routerLinkActiveOptions]="{exact: true}">Калькулятор конвейеров<span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/allengines" [routerLinkActiveOptions]="{exact: true}">Мотор-редукторы<span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/allbelts" [routerLinkActiveOptions]="{exact: true}">Ленты<span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/allbelttypes" [routerLinkActiveOptions]="{exact: true}">Типы лент<span class="sr-only"></span></a></li>
+            <li><a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/work/allmetallcosting" [routerLinkActiveOptions]="{exact: true}">Металл<span class="sr-only"></span></a></li>
+            <li><a href="#" class="nav-link" routerLinkActive="active" aria-current="page" (click)="logout()" [routerLinkActiveOptions]="{exact: true}">Выйти<span class="sr-only"></span></a></li>
         </ul>
     </nav>
 

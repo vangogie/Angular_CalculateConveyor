@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { forkJoin, Observable, tap } from 'rxjs';
 import { Course } from 'src/app/models/course';
 import { Engine } from 'src/app/models/engine';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
@@ -23,7 +24,9 @@ export class EditComponent implements OnInit {
   constructor(
     public context:EngineContextService, 
     public route:ActivatedRoute, 
-    private router: Router) {     
+    private authGuardService: AuthGuardService,
+    private router: Router) { 
+      context.context.validate().subscribe(()=>authGuardService.canActivate());    
   }
 
   ngOnInit(): void {
@@ -69,7 +72,7 @@ export class EditComponent implements OnInit {
     {
       this.engine.power = this.form.value.power;
       this.engine.cost = this.calculateToUSD();
-      this.context.updateEngine(this.engine, this.vendor).subscribe(()=>{this.router.navigate([`allengines`]);});
+      this.context.updateEngine(this.engine, this.vendor).subscribe(()=>{this.router.navigate([`work/allengines`]);});
     }   
   }
 
@@ -82,7 +85,7 @@ export class EditComponent implements OnInit {
 
   redirectToAllEngines()
   {
-    this.router.navigate([`allengines`]);
+    this.router.navigate([`work/allengines`]);
   }
 
   getIsSelected(name: string) {

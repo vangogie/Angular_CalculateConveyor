@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BeltType } from 'src/app/models/belt-type';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class AllBeltTypesComponent implements OnInit {
 
   constructor(
     public belttypescontext:BeltTypesContextService,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) {
+      belttypescontext.context.validate().subscribe(()=>authGuardService.canActivate());
+     }
 
   ngOnInit(): void {
     this.belttypescontext.get().subscribe(beltTypes => {
@@ -23,15 +27,15 @@ export class AllBeltTypesComponent implements OnInit {
   }
 
   addNewBeltType(){
-    this.router.navigate([`addbelttype`]);
+    this.router.navigate([`work/addbelttype`]);
   }
 
   editBeltType(id: any){
-    this.router.navigate([`editbelttype/${id}`]);
+    this.router.navigate([`work/editbelttype/${id}`]);
   }
 
   deleteBeltType(id: any, type: string){
-    this.router.navigate([`deletebelttype/${id}/${type}`]);
+    this.router.navigate([`work/deletebelttype/${id}/${type}`]);
   }
 
 }

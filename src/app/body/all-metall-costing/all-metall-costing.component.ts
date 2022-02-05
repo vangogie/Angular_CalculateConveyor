@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MetallCosting } from 'src/app/models/metall-costing';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { MetallCostingContextService } from 'src/app/services/metall-costing-context.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class AllMetallCostingComponent implements OnInit {
 
   constructor(
     public metallCostingContextService: MetallCostingContextService,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) {
+      metallCostingContextService.context.validate().subscribe(()=>authGuardService.canActivate());
+     }
 
   ngOnInit(): void {
     this.metallCostingContextService.get().subscribe(metallCostings =>{
@@ -23,7 +27,7 @@ export class AllMetallCostingComponent implements OnInit {
   }
 
   editMetallCosting(id: any){
-    this.router.navigate([`editmetallcosting/${id}`]);
+    this.router.navigate([`work/editmetallcosting/${id}`]);
   }
 
 }

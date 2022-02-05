@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BeltType } from 'src/app/models/belt-type';
 import { Course } from 'src/app/models/course';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltContextService } from 'src/app/services/belt-context.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
@@ -20,7 +21,10 @@ export class AddBeltComponent implements OnInit {
   constructor(
     public belttypescontext:BeltTypesContextService,
     public beltcontext: BeltContextService,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) { 
+      beltcontext.context.validate().subscribe(()=>authGuardService.canActivate());
+    }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -62,11 +66,11 @@ export class AddBeltComponent implements OnInit {
       name: this.form.value.name,
       beltType: Type
     }
-    this.beltcontext.add(belt).subscribe(()=>{this.router.navigate([`allbelts`]);});
+    this.beltcontext.add(belt).subscribe(()=>{this.router.navigate([`work/allbelts`]);});
   }
 
   redirectToAllBelts(){
-    this.router.navigate([`allbelts`]);
+    this.router.navigate([`work/allbelts`]);
   }
 
   private calculateToUSD(){

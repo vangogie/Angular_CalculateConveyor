@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Belt } from 'src/app/models/belt';
 import { BeltType } from 'src/app/models/belt-type';
 import { Course } from 'src/app/models/course';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltContextService } from 'src/app/services/belt-context.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
@@ -24,7 +25,10 @@ export class EditBeltComponent implements OnInit {
     public belttypescontext:BeltTypesContextService,
     public beltcontext: BeltContextService,
     public route: ActivatedRoute,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) {
+      beltcontext.context.validate().subscribe(()=>authGuardService.canActivate());
+     }
 
   ngOnInit(): void {
     this.belttypescontext.get().subscribe(beltTypes => {
@@ -71,7 +75,7 @@ export class EditBeltComponent implements OnInit {
     {
       this.belt.name = this.form.value.name;
       this.belt.cost = this.calculateToUSD()
-      this.beltcontext.update(this.belt).subscribe(()=>{this.router.navigate([`allbelts`]);});
+      this.beltcontext.update(this.belt).subscribe(()=>{this.router.navigate([`work/allbelts`]);});
     }   
   }
 
@@ -91,7 +95,7 @@ export class EditBeltComponent implements OnInit {
 
   redirectToAllBelts()
   {
-    this.router.navigate([`allbelts`]);
+    this.router.navigate([`work/allbelts`]);
   }
 
 }

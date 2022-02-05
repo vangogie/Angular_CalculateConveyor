@@ -20,39 +20,52 @@ import { EditBeltComponent } from './body/edit-belt/edit-belt.component';
 import { EditMetallCostingComponent } from './body/edit-metall-costing/edit-metall-costing.component';
 import { EditComponent } from './body/edit/edit.component';
 import { ErrorComponent } from './body/error/error.component';
+import { LoginComponent } from './body/login/login.component';
 import { MainComponent } from './body/main/main.component';
+import { AuthLayoutComponent } from './lauouts/auth-layout/auth-layout.component';
+import { SiteLayoutComponent } from './lauouts/site-layout/site-layout.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path: '', component:MainComponent},
+  {
+    path: '', component: AuthLayoutComponent, children: [
+      //{path: 'login', component: LoginComponent},
+    ]
+  },
+  {
+    path: 'work', component: SiteLayoutComponent, canActivate: [AuthGuardService], children: [
+      {path: '', component:MainComponent},
 
-  {path: 'calculate', component:CalculaleComponent},
-  {path: 'calculatestraightconveyor', component:CalculateStraightConveyorComponent},
+      {path: 'calculate', component:CalculaleComponent},
+      {path: 'calculatestraightconveyor', component:CalculateStraightConveyorComponent},
 
-  {path: 'allengines', component:AllEnginesComponent},
-  {path: 'addengine', component:AddEngineComponent},
-  {path: 'edit/:vendor/:id', component:EditComponent},
-  {path: 'delete/:vendor/:id/:cost/:power', component:DeleteComponent},
+      {path: 'allengines', component:AllEnginesComponent},
+      {path: 'addengine', component:AddEngineComponent},
+      {path: 'edit/:vendor/:id', component:EditComponent},
+      {path: 'delete/:vendor/:id/:cost/:power', component:DeleteComponent},
 
-  {path: 'allbelts', component:AllBeltsComponent},
-  {path: 'addbelt', component:AddBeltComponent},
-  {path: 'editbelt/:id', component:EditBeltComponent},
-  {path: 'deletebelt/:id/:name', component:DeleteBeltComponent},
+      {path: 'allbelts', component:AllBeltsComponent},
+      {path: 'addbelt', component:AddBeltComponent},
+      {path: 'editbelt/:id', component:EditBeltComponent},
+      {path: 'deletebelt/:id/:name', component:DeleteBeltComponent},
 
-  {path: 'allbelttypes', component:AllBeltTypesComponent},
-  {path: 'addbelttype', component:AddBeltTypeComponent},
-  {path: 'editbelttype/:id', component:EditBeltTypeComponent},
-  {path: 'deletebelttype/:id/:type', component:DeleteBeltTypeComponent},
+      {path: 'allbelttypes', component:AllBeltTypesComponent},
+      {path: 'addbelttype', component:AddBeltTypeComponent},
+      {path: 'editbelttype/:id', component:EditBeltTypeComponent},
+      {path: 'deletebelttype/:id/:type', component:DeleteBeltTypeComponent},
 
-  {path: 'allmetallcosting', component:AllMetallCostingComponent},
-  {path: 'editmetallcosting/:id', component:EditMetallCostingComponent},
+      {path: 'allmetallcosting', component:AllMetallCostingComponent},
+      {path: 'editmetallcosting/:id', component:EditMetallCostingComponent},
 
-  {path: 'about', component:AboutComponent},
-  {path: 'author', component:AboutAuthorComponent},
+      {path: 'about', component:AboutComponent},
+      {path: 'author', component:AboutAuthorComponent},
 
-  {path: 'delete_success/:nextroute', component:DeleteSuccessComponent},
+      {path: 'delete_success/:nextroute', component:DeleteSuccessComponent},
   
-  {path: 'error', component:ErrorComponent},
-  {path: '**', redirectTo: '/error'}
+      {path: 'error', component:ErrorComponent},
+      {path: '**', redirectTo: '/error'}
+      ]
+  }
 ];
 
 @NgModule({

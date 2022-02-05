@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Belt } from 'src/app/models/belt';
 import { BeltType } from 'src/app/models/belt-type';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { BeltContextService } from 'src/app/services/belt-context.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
@@ -20,7 +22,11 @@ export class AllBeltsComponent implements OnInit {
   constructor(
     public beltcontext:BeltContextService,
     public belttypescontext:BeltTypesContextService,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    public authService: AuthService,
+    private router: Router) {
+      beltcontext.context.validate().subscribe(()=>authGuardService.canActivate());
+     }
 
   ngOnInit(): void {
     this.belttypescontext.get().subscribe(belttypes => {
@@ -36,15 +42,15 @@ export class AllBeltsComponent implements OnInit {
 
 
   addNewBelt(){
-    this.router.navigate([`addbelt`]);
+    this.router.navigate([`work/addbelt`]);
   }
 
   editBelt(id: any){
-    this.router.navigate([`editbelt/${id}`]);
+    this.router.navigate([`work/editbelt/${id}`]);
   }
 
   deleteBelt(id: any, name: string){
-    this.router.navigate([`deletebelt/${id}/${name}`]);
+    this.router.navigate([`work/deletebelt/${id}/${name}`]);
   }
 
   onBeltSelected(event: any){

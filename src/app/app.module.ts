@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -25,6 +25,11 @@ import { EditMetallCostingComponent } from './body/edit-metall-costing/edit-meta
 import { AllMetallCostingComponent } from './body/all-metall-costing/all-metall-costing.component';
 import { CalculateStraightConveyorComponent } from './body/calculale-straight-conveyor/calculale-straight-conveyor.component';
 import { CalculaleComponent } from './body/calculale/calculale.component';
+import { TokenInterceptor } from './services/token.interceptor';
+import { LoginComponent } from './body/login/login.component';
+import { SiteLayoutComponent } from './lauouts/site-layout/site-layout.component';
+import { AuthLayoutComponent } from './lauouts/auth-layout/auth-layout.component';
+import { UsersComponent } from './body/users/users.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,11 @@ import { CalculaleComponent } from './body/calculale/calculale.component';
     EditMetallCostingComponent,
     AllMetallCostingComponent,
     CalculateStraightConveyorComponent,
-    CalculaleComponent
+    CalculaleComponent,
+    LoginComponent,
+    SiteLayoutComponent,
+    AuthLayoutComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +66,11 @@ import { CalculaleComponent } from './body/calculale/calculale.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

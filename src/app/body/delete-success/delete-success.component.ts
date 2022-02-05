@@ -16,7 +16,7 @@ export class DeleteSuccessComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params)=>
     {
-      this.nextroute = params["nextroute"];
+      this.nextroute = `work/` + params["nextroute"];
     });
   }
 

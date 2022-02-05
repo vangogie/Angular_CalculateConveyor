@@ -5,6 +5,7 @@ import { BeltType } from 'src/app/models/belt-type';
 import { ConveyorCostAnswer } from 'src/app/models/conveyor-cost-answer';
 import { ConveyorDataModel } from 'src/app/models/conveyor-data-model';
 import { MetallCosting } from 'src/app/models/metall-costing';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 import { ConveyorCalculateContextService } from 'src/app/services/conveyor-calculate-context.service';
 import { MetallCostingContextService } from 'src/app/services/metall-costing-context.service';
@@ -25,9 +26,11 @@ export class CalculateStraightConveyorComponent implements OnInit {
   constructor(
     public belttypescontext:BeltTypesContextService,
     public metallCostingContextService: MetallCostingContextService,
+    private authGuardService: AuthGuardService,
     public conveyorCalculateContextService: ConveyorCalculateContextService,
     private router: Router
   ) {
+    belttypescontext.context.validate().subscribe(()=>authGuardService.canActivate());
     this.form = new FormGroup({
       clength: new FormControl([Validators.required]),
       width: new FormControl([Validators.required]),

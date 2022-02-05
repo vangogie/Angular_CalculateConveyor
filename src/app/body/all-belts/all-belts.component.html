@@ -30,7 +30,7 @@
                 <h5 class="card-title">${{belt.cost}}</h5>
               </div>
               <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
-              <div class="textData"><button (click)="editBelt(belt.id)" class="btn btn-outline-success shadow greenButton" style="margin: 10px;">Изменить</button></div>
+              <div class="textData" *ngIf="authService.isAuthenticated()"><button (click)="editBelt(belt.id)" class="btn btn-outline-success shadow greenButton" style="margin: 10px;">Изменить</button></div>
               <div class="textData"><button (click)="deleteBelt(belt.id, belt.name)" class="btn btn-success shadow" style="margin: 10px;">Удалить</button></div> 
             </div>
           </div>

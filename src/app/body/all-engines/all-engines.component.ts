@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Engine } from 'src/app/models/engine';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
@@ -19,9 +20,13 @@ export class AllEnginesComponent implements OnInit {
   private sews: Engine[] = [];
   private motovarios: Engine[] = [];
 
-  constructor(public context:EngineContextService, private router: Router) {
+  constructor(
+    public context:EngineContextService,
+    private authGuardService: AuthGuardService, 
+    private router: Router) {
     this.powers = context.getPower();
     this.selectedPower = 0;
+    context.context.validate().subscribe(()=>authGuardService.canActivate());
    }
 
   ngOnInit(): void {
@@ -37,12 +42,12 @@ export class AllEnginesComponent implements OnInit {
 
   editEngine(id: any): void
   {
-    this.router.navigate([`edit/${this.vendor}/${id}`]);
+    this.router.navigate([`work/edit/${this.vendor}/${id}`]);
   }
 
   deleteEngine(id: any, cost: any, power: any): void
   {
-    this.router.navigate([`delete/${this.vendor}/${id}/${cost}/${power}`]);
+    this.router.navigate([`work/delete/${this.vendor}/${id}/${cost}/${power}`]);
   }
 
   onEngineSelected(event: any){
@@ -72,7 +77,7 @@ export class AllEnginesComponent implements OnInit {
   }
 
   addNewEngine(){
-    this.router.navigate([`addengine`]);
+    this.router.navigate([`work/addengine`]);
   }
 
 }

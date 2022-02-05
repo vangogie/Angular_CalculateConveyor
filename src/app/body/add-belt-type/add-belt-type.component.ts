@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class AddBeltTypeComponent implements OnInit {
   
   constructor(
     public belttypescontext:BeltTypesContextService,
+    private authGuardService: AuthGuardService,
     private router: Router
   ) { 
+    belttypescontext.context.validate().subscribe(()=>authGuardService.canActivate());
     this.form = new FormGroup({
       type: new FormControl('', [Validators.minLength(3), Validators.maxLength(15)]),
     });
@@ -34,7 +37,7 @@ export class AddBeltTypeComponent implements OnInit {
   }
 
   redirectToAllBeltTypes(){
-    this.router.navigate([`allbelttypes`]);
+    this.router.navigate([`work/allbelttypes`]);
   }
 
 }

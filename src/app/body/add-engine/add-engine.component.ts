@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { Engine } from 'src/app/models/engine';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { EngineContextService } from 'src/app/services/engine-context.service';
 
 @Component({
@@ -16,8 +17,12 @@ export class AddEngineComponent implements OnInit {
   public powers: number[] = [];
   public courses: Course[] = [];
 
-  constructor(public context:EngineContextService, private router: Router) {
+  constructor(
+    public context:EngineContextService,
+    private authGuardService: AuthGuardService, 
+    private router: Router) {
     this.powers = context.getPower();
+    context.context.validate().subscribe(()=>authGuardService.canActivate());
    }
 
   ngOnInit(): void {
@@ -44,7 +49,7 @@ export class AddEngineComponent implements OnInit {
       cost: this.calculateToUSD(),
       power: this.form.value.power,
     }
-    this.context.addEngine(sew, this.form.value.vendor).subscribe(()=>{this.router.navigate([`allengines`]);});
+    this.context.addEngine(sew, this.form.value.vendor).subscribe(()=>{this.router.navigate([`work/allengines`]);});
   }
 
   private calculateToUSD(){
@@ -63,7 +68,7 @@ export class AddEngineComponent implements OnInit {
 
   redirectToAllEngines()
   {
-    this.router.navigate([`allengines`]);
+    this.router.navigate([`work/allengines`]);
   }
 
   onChangeEngine(event: any){

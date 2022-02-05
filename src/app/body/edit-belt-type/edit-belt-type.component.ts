@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BeltType } from 'src/app/models/belt-type';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { BeltTypesContextService } from 'src/app/services/belt-types-context.service';
 
 @Component({
@@ -17,8 +18,10 @@ export class EditBeltTypeComponent implements OnInit {
   constructor(
     public belttypescontext:BeltTypesContextService,
     public route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) {
+      belttypescontext.context.validate().subscribe(()=>authGuardService.canActivate());
+   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -48,7 +51,7 @@ export class EditBeltTypeComponent implements OnInit {
   }
 
   redirectToAllBeltTypes(){
-    this.router.navigate([`allbelttypes`]);
+    this.router.navigate([`work/allbelttypes`]);
   }
 
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { MetallCosting } from 'src/app/models/metall-costing';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { MetallCostingContextService } from 'src/app/services/metall-costing-context.service';
 
 @Component({
@@ -19,7 +20,10 @@ export class EditMetallCostingComponent implements OnInit {
   constructor(
     private context: MetallCostingContextService,  
     public route: ActivatedRoute,
-    private router: Router) { }
+    private authGuardService: AuthGuardService,
+    private router: Router) {
+      context.context.validate().subscribe(()=>authGuardService.canActivate());
+     }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -58,12 +62,12 @@ export class EditMetallCostingComponent implements OnInit {
     if(this.metallCosting)
     {
       this.metallCosting.cost = this.calculateToUSD()
-      this.context.update(this.metallCosting).subscribe(()=>{this.router.navigate([`allmetallcosting`]);});
+      this.context.update(this.metallCosting).subscribe(()=>{this.router.navigate([`work/allmetallcosting`]);});
     }   
   }
 
   redirectToAllMetallCosting(){
-    this.router.navigate([`allmetallcosting`]);
+    this.router.navigate([`work/allmetallcosting`]);
   }
 
   private calculateToUSD(){

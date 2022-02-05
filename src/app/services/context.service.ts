@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Engine } from '../models/engine';
 import { Course } from '../models/course';
@@ -16,9 +16,18 @@ export class ContextService {
     //return `https://conveyor.user15860.realhost-free.net/api`
   }
 
-  getCourse(): Observable<Course[]>{
-    let privatBankAPI = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
-    return this.http.get<Course[]>(privatBankAPI);
+  public get privatBankAPI() : string {
+    return 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
   }
+
+  getCourse(): Observable<Course[]>{
+    let headers = new HttpHeaders();
+    return this.http.get<Course[]>(this.privatBankAPI, {headers: headers});
+  }
+
+  validate():Observable<boolean>{
+    return this.http.post<boolean>(`${this.connectionString}/auth/validate`, null);
+  }
+
 
 }

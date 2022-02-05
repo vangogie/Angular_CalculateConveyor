@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'homework5';
+  title = 'Calculate conveyor';
+
+  constructor(private auth: AuthService) { }
+
+  ngOnInit(): void {
+    const token_s: string | any = localStorage.getItem('auth-token')
+    if (token_s !== '') {
+      this.auth.setToken(token_s)
+    }
+
+
+  }
 }

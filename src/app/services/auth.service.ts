@@ -38,8 +38,21 @@ export class AuthService {
       this.setToken(token)
     }))
   }
-/*
-  register(user: User) {
-    return this.http.post<User>('/api/auth/register', user)
-  }*/
+
+  get(): Observable<User[]>{
+    return this.http.get<User[]>(`${this.connectionString}/auth`);
+  }
+
+  add(user: User): Observable<boolean>{
+    return this.http.post<boolean>(`${this.connectionString}/auth/adduser`, user);
+  }
+
+  update(user: User): Observable<boolean>{
+    return this.http.patch<boolean>(`${this.connectionString}/auth`, user);
+  }
+
+  delete(id: number): Observable<Boolean>{
+    return this.http.get<Boolean>(`${this.connectionString}/auth/delete/${id}`);
+  }
+
 }

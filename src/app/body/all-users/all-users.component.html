@@ -1,0 +1,35 @@
+<div class="center-data minheight" style="width: 480px;">
+
+    <div class="card rounded shadow card-gradient" style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="card-body">
+            <h5 class="card-header bg-info rounded textData" style="margin-bottom: 30px; text-align: center;">Пользователи</h5>
+          <div class="textData"><button (click)="addNewUser()" class="btn btn-outline-info shadow greenButton" style="margin: 10px;">Добавить нового пользователя</button></div>
+        </div>   
+    </div>   
+    
+    <div *ngFor="let user of users">
+        <div class="card rounded card shadow card-gradient" style="margin-bottom: 15px;">
+          <div class="card-body">
+
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+
+                <div>
+                    <img src="assets/images/user.png" alt="belt" class="smallImage">
+                </div>
+                <div>
+                  <div class="textData">
+                    <h5 class="card-title fixedTextWidth" style="margin: 10px;">{{user.email}}</h5>
+                  </div>
+                  <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+                    <div class="textData"><button (click)="editPassword(user.email)" class="btn btn-outline-info shadow greenButton" style="margin: 10px;">Изменить пароль</button></div>
+                    <div class="textData"><button (click)="deleteUser(user.email, user.id)" class="btn btn-info shadow" style="margin: 10px;">Удалить</button></div> 
+                  </div>
+                </div>
+                  
+            </div>
+          
+          </div>
+        </div>
+    </div>
+
+</div>

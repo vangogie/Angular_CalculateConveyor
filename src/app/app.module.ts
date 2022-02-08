@@ -29,7 +29,10 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { LoginComponent } from './body/login/login.component';
 import { SiteLayoutComponent } from './lauouts/site-layout/site-layout.component';
 import { AuthLayoutComponent } from './lauouts/auth-layout/auth-layout.component';
-import { UsersComponent } from './body/users/users.component';
+import { AllUsersComponent } from './body/all-users/all-users.component';
+import { AddUserComponent } from './body/add-user/add-user.component';
+import { EditUserComponent } from './body/edit-user/edit-user.component';
+import { DeleteUserComponent } from './body/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { UsersComponent } from './body/users/users.component';
     LoginComponent,
     SiteLayoutComponent,
     AuthLayoutComponent,
-    UsersComponent
+    AllUsersComponent,
+    AddUserComponent,
+    EditUserComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,

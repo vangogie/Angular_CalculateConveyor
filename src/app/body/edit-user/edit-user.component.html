@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="minheight">
+    <div style="width: 600px; margin: 0 auto;">
+        <div class="card shadow p-5 lg-8 bg-white rounded card-gradient textData" style="margin: 20px;">
+            <div class="card-body" style="margin: 0 auto; width: 450px;">
+                <div>
+                    <h5 class="card-header bg-info rounded" style="margin-bottom: 30px; text-align: center;">Редактирование пароля для {{email}}</h5>
+  
+  
+                    <div style="margin-bottom: 20px;">
+                      <label>Пароль</label>
+                      <input id="password" type="password" placeholder="Введите пароль" formControlName="password" class="form-control">
+                      <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="validation">
+                        <span *ngIf="form.controls['password'].errors?.['required']">Пароль не должен быть пустым</span>
+                        <span *ngIf="form.controls['password'].errors?.['minlength'] && form.controls['password'].errors?.['minlength']['requiredLength']">
+                        Пароль не может быть меньше {{form.controls['password'].errors?.['minlength']['requiredLength']}} символов.
+                        Сейчас {{form.controls['password'].errors?.['minlength']['actualLength']}} </span>
+                      </div>  
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label>Повторите пароль</label>
+                        <input id="confirmPassword" type="password" placeholder="Повторите пароль" formControlName="confirmPassword" class="form-control">
+                        <div *ngIf="form.controls['password'].touched" class="validation">
+                            <span *ngIf="form.value.password!=form.value.confirmPassword">Повторенный пароль не совпадает</span>
+                        </div>
+                    </div>
+
+                    
+                <button class="btn btn-info" style="margin-right: 70px;" [disabled]="form.invalid || form.value.password != form.value.confirmPassword" type="submit">Изменить пароль</button>
+                <div>{{message}}</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
